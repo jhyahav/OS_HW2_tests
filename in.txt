@@ -1,0 +1,41 @@
+echo
+echo
+echo -e \e[1mPart 1: Background processes and zombie prevention\e[0m
+echo -e \e[1m--------------------------------------------------\e[0m
+sleep 5 &
+ps -o pid,cmd
+sleep 5
+echo &
+ps -o pid,cmd
+echo
+echo -e \e[31mMake sure sleep is not listed by the second ps and that this message appears after both process lists!\e[0m
+echo
+echo 
+sleep 3
+echo -e \e[1mPart 2: Input redirection\e[0m
+echo -e \e[1m--------------------------------------------------\e[0m
+sleep 2
+echo -e \e[33mhead command with shell.c as input:\e[0m
+head < shell.c
+echo
+echo -e \e[33mcat input redirection test:\e[0m
+cat < test.txt
+echo
+sleep 2
+echo -e \e[1mPart 3: Pipes\e[0m
+echo -e \e[1m--------------------------------------------------\e[0m
+echo -e \e[33mSearch results for void in shell.c\e[0m
+cat shell.c | grep void
+echo
+echo -e \e[33mTesting simultaneity of pipes:\e[0m
+sleep 10 | echo This text should appear as the shell begins to sleep, not afterwards.
+echo This text should appear after the shell sleeps, 10 seconds after the previous text.
+echo
+echo -e \e[33mshell.c file info:\e[0m
+ls -la | grep shell.c
+echo
+echo -e \e[1mPart 4: Manual commands for error and signal handling \e[0m
+echo -e \e[1m--------------------------------------------------\e[0m
+echo -e \e[96mThe automated portion of the test is finished.\e[0m
+echo -e \e[96mSee README.md for tests you should run manually.\e[0m
+echo

@@ -1,0 +1,55 @@
+
+
+[1mPart 1: Background processes and zombie prevention[0m
+[1m--------------------------------------------------[0m
+    PID CMD
+  91949 bash
+  91993 ./shell
+  91998 sleep 5
+  91999 ps -o pid,cmd
+
+    PID CMD
+  91949 bash
+  91993 ./shell
+  92002 ps -o pid,cmd
+
+[31mMake sure sleep is not listed by the second ps and that this message appears after both process lists![0m
+
+
+[1mPart 2: Input redirection[0m
+[1m--------------------------------------------------[0m
+[33mhead command with shell.c as input:[0m
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+
+// arglist - a list of char* arguments (words) provided by the user
+// it contains count+1 items, where the last item (arglist[count]) and *only* the last is NULL
+// RETURNS - 1 if should continue, 0 otherwise
+int process_arglist(int count, char** arglist);
+
+[33mcat input redirection test:[0m
+Input redirection was successful!
+
+[1mPart 3: Pipes[0m
+[1m--------------------------------------------------[0m
+[33mSearch results for void in shell.c[0m
+int prepare(void);
+int finalize(void);
+int main(void)
+
+[33mTesting simultaneity of pipes:[0m
+This text should appear as the shell begins to sleep, not afterwards.
+This text should appear after the shell sleeps, 10 seconds after the previous text.
+
+[33mshell.c file info:[0m
+-rw-r--r-- 1 student student  5799 Apr 24 12:33 myshell.c
+-rw-r--r-- 1 student student  1363 Apr 20 22:51 shell.c
+
+[1mPart 4: Manual commands for error and signal handling [0m
+[1m--------------------------------------------------[0m
+[96mThe automated portion of the test is finished.[0m
+[96mSee README.md for tests you should run manually.[0m
+
