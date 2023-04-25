@@ -8,34 +8,52 @@ sleep 5
 echo &
 ps -o pid,cmd
 echo
-echo -e \e[31mMake sure sleep is not listed by the second ps and that this message appears after both process lists!\e[0m
+echo -e \e[91mMake sure sleep is not listed by the second ps and that this message appears after both process lists!\e[0m
 echo
-echo 
 sleep 3
 echo -e \e[1mPart 2: Input redirection\e[0m
 echo -e \e[1m--------------------------------------------------\e[0m
 sleep 2
 echo -e \e[33mhead command with shell.c as input:\e[0m
-head < shell.c
-echo
-echo -e \e[33mcat input redirection test:\e[0m
+head -n 6 < shell.c
+sleep 2
+echo -e \e[93mcat input redirection test:\e[0m
 cat < test.txt
 echo
 sleep 2
 echo -e \e[1mPart 3: Pipes\e[0m
 echo -e \e[1m--------------------------------------------------\e[0m
-echo -e \e[33mSearch results for void in shell.c\e[0m
+sleep 1
+echo -e \e[92mSearch results for void in shell.c\e[0m
 cat shell.c | grep void
 echo
-echo -e \e[33mTesting simultaneity of pipes:\e[0m
+echo -e \e[36mTesting simultaneity of pipes:\e[0m
 sleep 10 | echo This text should appear as the shell begins to sleep, not afterwards.
 echo This text should appear after the shell sleeps, 10 seconds after the previous text.
 echo
-echo -e \e[33mshell.c file info:\e[0m
+sleep 2
+echo -e \e[94m*shell.c file info:\e[0m
 ls -la | grep shell.c
 echo
-echo -e \e[1mPart 4: Manual commands for error and signal handling \e[0m
+sleep 1
+echo -e \e[1mPart 4: Everything together \e[0m
+echo -e \e[1m--------------------------------------------------\e[0m
+sleep 2
+sleep 10000 &
+echo -e \e[35mTesting multiple commands after sleep 10000 &. If your terminal hangs, you have a signal handling issue.\e[0m
+echo -e \e[95mThis line should appear immediately after the previous one. Let's add pipes into the mix:\e[0m
+sleep 1
+ls -la | grep test.txt
+echo -e \e[95mTesting input redirection with sleep running in background:\e[0m
+sleep 1
+cat < test.txt
+echo
+ps -o pid,cmd
+sleep 3
+echo
+echo -e \e[1mPart 5: Manual commands for error and signal handling \e[0m
 echo -e \e[1m--------------------------------------------------\e[0m
 echo -e \e[96mThe automated portion of the test is finished.\e[0m
 echo -e \e[96mSee README.md for tests you should run manually.\e[0m
+pkill -f sleep
 echo
