@@ -16,7 +16,7 @@ Unfortunately, not all of the necessary test cases could be appropriately automa
 * ```undefined < test.txt```
 * ```cat < undefined.txt```
 * ```undefined | undefined``` (should yield two error messages!)
-* ```echo hi | undefined```
+* ```echo hi | undefined``` (might yield ```write error: Broken pipe``` in addition to standard error message on Nova)
 * ```undefined | echo hi``` (either an error message then "hi" or just an error message should be alright)
 3. **Signal handling tests (important! don't skip these):**
 * See the various tests that include ```SIGINT``` (```^C```) and other signals throughout [the PDF on Google Drive](https://drive.google.com/file/d/13e-sn83wvrWhqbawsdGD0WVWyx2eLdo_/view?usp=sharing).
